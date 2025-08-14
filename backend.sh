@@ -7,7 +7,7 @@ root
 echo "Enter mysql_root_password"
 read mysql_root_password
 
-dnf module disbale nodejs -y &>>$LOGPATH
+dnf module disable nodejs -y &>>$LOGPATH
 validate $? "Disabling deafult nodejs"
 
 dnf module enable nodejs:20 -y &>>$LOGPATH
@@ -29,7 +29,7 @@ validate $? "creating expense user"
 fi
 
 rm -rf /app &>>$LOGPATH
-curl -o /tmp/backend.service https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGPATH
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGPATH
 validate $? "Downloading backend code to /tmp"
 
 mkdir -p /app &>>$LOGPATH
