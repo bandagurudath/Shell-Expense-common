@@ -14,7 +14,10 @@ dnf module enable nodejs:20 -y &>>$LOGPATH
 validate $? "Enabling nodejs version 20"
 
 dnf install nodejs -y &>>$LOGPATH
-validate $? "starting nodejs"
+validate $? "installing nodejs"
+
+dnf install mysql -y &>>$LOGPATH
+validate $? "installing mysql"
 
 id expense &>>$LOGPATH
 if [ $? -eq 0 ]
@@ -37,7 +40,7 @@ validate $? "Unzipping backend code to /app"
 npm install &>>$LOGPATH
 validate $? "installing node js dependencies"
 
-cp /home/ec2-user/shell-expense/backend.service /etc/systemd/system/backend.service &>>$LOGPATH
+cp /home/ec2-user/shell-Expense-common/backend.service /etc/systemd/system/backend.service &>>$LOGPATH
 validate $? "copyinh backend service file to systemd"
 
 systemctl daemon-reload &>>$LOGPATH
